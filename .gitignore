@@ -1,0 +1,14 @@
+# IDE / Editor files
+/.idea/
+/*.iml
+/shelf/
+/workspace.xml
+
+# HTTP Client / Data sources
+/httpRequests/
+/dataSources/
+/dataSources.local.xml
+
+# Composer dependencies
+/vendor/
+composer.lock
