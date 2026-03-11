@@ -207,16 +207,15 @@ function processImports($csvFilePath)
                         $rowNo = $skip + 1;
 
                         // Check if any field is empty
-                        if ($data[0] === "" || $data[1] === "" || $data[2] === "" || $data[3] === "") {
+                        $adaccountno = isset($data[0]) ? trim($data[0]) : "";
+                        $designation = isset($data[1]) ? trim($data[1]) : "";
+                        $region = isset($data[2]) ? trim($data[2]) : "";
+                        $role_id = isset($data[3]) ? trim($data[3]) : "";
+
+                        if ($adaccountno === "" || $designation === "" || $region === "" || $role_id === "") {
                             // If one fails, throw an exception to trigger the rollback immediately
-                            throw new Exception("Empty fields in row #$rowNo: " . implode(", ", $data) . ". Please check your CSV file.");
+                            throw new Exception("Empty fields or missing columns in row #$rowNo. Content: [" . implode(", ", $data) . "]. Expected format: AD Account, Designation, Region, Role ID. Please ensure all 4 columns are provided and separated by commas.");
                         }
-                        $adaccountno = $data[0];
-                        $designation = $data[1];
-                        $region = $data[2];
-                        $role_id = $data[3];
-                        $region = trim($region);
-                        $role_id = trim($role_id);
 
                         //validate designation
                         if (strlen($designation[0]) > 100) {
