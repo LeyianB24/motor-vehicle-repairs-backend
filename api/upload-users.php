@@ -218,7 +218,7 @@ function processImports($csvFilePath)
                         }
 
                         //validate designation
-                        if (strlen($designation[0]) > 100) {
+                        if (strlen($designation) > 100) {
                             // If one fails, throw an exception to trigger the rollback immediately
                             throw new Exception("Designation too long. Entry rejected in row #$rowNo: " . implode(", ", $data) . ". Please check your CSV file.");
                         }
